@@ -34,5 +34,17 @@ namespace ClearPath.Properties {
                 this["FolderPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool OnWinStart {
+            get {
+                return ((bool)(this["OnWinStart"]));
+            }
+            set {
+                this["OnWinStart"] = value;
+            }
+        }
     }
 }

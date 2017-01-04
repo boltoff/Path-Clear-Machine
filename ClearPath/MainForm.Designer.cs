@@ -35,6 +35,7 @@
             this.btnClearNow = new System.Windows.Forms.Button();
             this.btnAccept = new System.Windows.Forms.Button();
             this.nfiMain = new System.Windows.Forms.NotifyIcon(this.components);
+            this.cbOnWinStart = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnChoosePath
@@ -84,12 +85,24 @@
             this.nfiMain.Text = "Clear Machine";
             this.nfiMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.nfiMain_MouseClick);
             // 
+            // cbOnWinStart
+            // 
+            this.cbOnWinStart.AutoSize = true;
+            this.cbOnWinStart.Location = new System.Drawing.Point(166, 12);
+            this.cbOnWinStart.Name = "cbOnWinStart";
+            this.cbOnWinStart.Size = new System.Drawing.Size(140, 17);
+            this.cbOnWinStart.TabIndex = 5;
+            this.cbOnWinStart.Text = "Run on windows startup";
+            this.cbOnWinStart.UseVisualStyleBackColor = true;
+            this.cbOnWinStart.CheckedChanged += new System.EventHandler(this.cbOnWinStart_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AcceptButton = this.btnAccept;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(318, 173);
+            this.Controls.Add(this.cbOnWinStart);
             this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.btnClearNow);
             this.Controls.Add(this.lbPath);
@@ -113,6 +126,7 @@
         private System.Windows.Forms.Button btnClearNow;
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.NotifyIcon nfiMain;
+        private System.Windows.Forms.CheckBox cbOnWinStart;
     }
 }
 

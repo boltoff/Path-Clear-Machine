@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,13 +14,16 @@ namespace ClearPath
 {
     public partial class MainForm : Form
     {
-        private FolderBrowserDialog fbd;
+        const string ProgramName = "ClearMachine";
         string setFolder = Properties.Settings.Default.FolderPath;
+
+        private FolderBrowserDialog fbd;
 
         public MainForm()
         {
             InitializeComponent();
             lbPath.Text = setFolder;
+            cbOnWinStart.Checked = Properties.Settings.Default.OnWinStart;
         }
 
         // Get folder's path
@@ -76,11 +80,48 @@ namespace ClearPath
             nfiMain.Visible = false;
         }
 
-        //Minimize the programm to tray on button Accept
+        //Minimize window to tray on button Accept
         private void btnAccept_Click(object sender, EventArgs e)
         {
             this.Hide();
             nfiMain.Visible = true;
+        }
+
+        //Added autoloading ro register
+        public bool SetAutorunValue(bool autorun)
+        {
+            string ExePath = System.Windows.Forms.Application.ExecutablePath;
+            RegistryKey reg;
+            reg = Registry.CurrentUser.CreateSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run\\");
+            try
+            {
+                if (autorun)
+                    reg.SetValue(ProgramName, ExePath);
+                else
+                    reg.DeleteValue(ProgramName);
+
+                reg.Close();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
+        //Set or Unset autoloading
+        private void cbOnWinStart_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbOnWinStart.Checked == true)
+            {
+                SetAutorunValue(true);
+                Properties.Settings.Default.OnWinStart = true;
+            }
+            else
+            {
+                SetAutorunValue(false);
+                Properties.Settings.Default.OnWinStart = false;
+            }
         }
     }
 }
