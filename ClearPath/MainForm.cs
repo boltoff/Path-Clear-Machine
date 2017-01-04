@@ -24,6 +24,8 @@ namespace ClearPath
             InitializeComponent();
             lbPath.Text = setFolder;
             cbOnWinStart.Checked = Properties.Settings.Default.OnWinStart;
+            nudCleanDays.Value = Properties.Settings.Default.SetNumDate;
+            DoAtCurrentTime();
         }
 
         // Get folder's path
@@ -46,20 +48,24 @@ namespace ClearPath
                 "Attention",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning) == DialogResult.Yes)
+                ClearPath();
+        }
+
+        //Clear method
+        private void ClearPath()
+        {
+            DirectoryInfo di = new DirectoryInfo(Properties.Settings.Default.FolderPath);
+
+            foreach (FileInfo file in di.GetFiles())
             {
-                DirectoryInfo di = new DirectoryInfo(Properties.Settings.Default.FolderPath);
-
-                foreach (FileInfo file in di.GetFiles())
-                {
-                    file.Delete();
-                }
-                foreach (DirectoryInfo dir in di.GetDirectories())
-                {
-                    dir.Delete(true);
-                }
-
-                MessageBox.Show("It's clear!.", "Yeah!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                file.Delete();
             }
+            foreach (DirectoryInfo dir in di.GetDirectories())
+            {
+                dir.Delete(true);
+            }
+
+            MessageBox.Show("It's clear!.", "Yeah!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         //Minimize Window to tray
@@ -88,20 +94,21 @@ namespace ClearPath
                 //Set autoloading
                 SetAutorunValue(true);
                 Properties.Settings.Default.OnWinStart = true;
+                Properties.Settings.Default.Save();
             }
             else
             {
                 //Unset autoloading
                 SetAutorunValue(false);
                 Properties.Settings.Default.OnWinStart = false;
+                Properties.Settings.Default.Save();
             }
-
-            this.Hide();
-            nfiMain.Visible = true;
+            Properties.Settings.Default.SetNumDate = nudCleanDays.Value;
+            this.Close();
         }
 
         //Added autoloading ro register
-        public bool SetAutorunValue(bool autorun)
+        private bool SetAutorunValue(bool autorun)
         {
             string ExePath = System.Windows.Forms.Application.ExecutablePath;
             RegistryKey reg;
@@ -120,6 +127,19 @@ namespace ClearPath
                 return false;
             }
             return true;
+        }
+
+        //Clear at set time method
+        private void DoAtCurrentTime()
+        {
+            DateTime dtnow = DateTime.Today;
+
+            if (dtnow == Properties.Settings.Default.SetDate)
+            {
+                ClearPath();
+                Properties.Settings.Default.SetDate = dtnow.AddDays((int)Properties.Settings.Default.SetNumDate);
+                Properties.Settings.Default.Save();
+            }
         }
     }
 }

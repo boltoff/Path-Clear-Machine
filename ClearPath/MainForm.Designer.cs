@@ -36,6 +36,9 @@
             this.btnAccept = new System.Windows.Forms.Button();
             this.nfiMain = new System.Windows.Forms.NotifyIcon(this.components);
             this.cbOnWinStart = new System.Windows.Forms.CheckBox();
+            this.nudCleanDays = new System.Windows.Forms.NumericUpDown();
+            this.lbClean = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCleanDays)).BeginInit();
             this.SuspendLayout();
             // 
             // btnChoosePath
@@ -95,12 +98,30 @@
             this.cbOnWinStart.Text = "Run on windows startup";
             this.cbOnWinStart.UseVisualStyleBackColor = true;
             // 
+            // nudCleanDays
+            // 
+            this.nudCleanDays.Location = new System.Drawing.Point(12, 83);
+            this.nudCleanDays.Name = "nudCleanDays";
+            this.nudCleanDays.Size = new System.Drawing.Size(39, 20);
+            this.nudCleanDays.TabIndex = 6;
+            // 
+            // lbClean
+            // 
+            this.lbClean.AutoSize = true;
+            this.lbClean.Location = new System.Drawing.Point(57, 85);
+            this.lbClean.Name = "lbClean";
+            this.lbClean.Size = new System.Drawing.Size(97, 13);
+            this.lbClean.TabIndex = 7;
+            this.lbClean.Text = "Clean every 0 days";
+            // 
             // MainForm
             // 
             this.AcceptButton = this.btnAccept;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(318, 173);
+            this.Controls.Add(this.lbClean);
+            this.Controls.Add(this.nudCleanDays);
             this.Controls.Add(this.cbOnWinStart);
             this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.btnClearNow);
@@ -113,6 +134,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Clear Machine";
             this.Resize += new System.EventHandler(this.MainForm_Resize);
+            ((System.ComponentModel.ISupportInitialize)(this.nudCleanDays)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,6 +148,8 @@
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.NotifyIcon nfiMain;
         private System.Windows.Forms.CheckBox cbOnWinStart;
+        private System.Windows.Forms.NumericUpDown nudCleanDays;
+        private System.Windows.Forms.Label lbClean;
     }
 }
 
