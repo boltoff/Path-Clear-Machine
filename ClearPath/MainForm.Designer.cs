@@ -104,6 +104,7 @@
             this.nudCleanDays.Name = "nudCleanDays";
             this.nudCleanDays.Size = new System.Drawing.Size(39, 20);
             this.nudCleanDays.TabIndex = 6;
+            this.nudCleanDays.ValueChanged += new System.EventHandler(this.nudCleanDays_ValueChanged);
             // 
             // lbClean
             // 

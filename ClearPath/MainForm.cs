@@ -141,5 +141,10 @@ namespace ClearPath
                 Properties.Settings.Default.Save();
             }
         }
+
+        private void nudCleanDays_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.SetNumDate = nudCleanDays.Value;
+        }
     }
 }
