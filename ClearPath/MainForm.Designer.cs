@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btnChoosePath = new System.Windows.Forms.Button();
             this.lbPath = new System.Windows.Forms.Label();
             this.btnClearNow = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
             this.btnAccept = new System.Windows.Forms.Button();
+            this.nfiMain = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
             // btnChoosePath
@@ -58,7 +59,7 @@
             // btnClearNow
             // 
             this.btnClearNow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClearNow.Location = new System.Drawing.Point(176, 140);
+            this.btnClearNow.Location = new System.Drawing.Point(145, 138);
             this.btnClearNow.Name = "btnClearNow";
             this.btnClearNow.Size = new System.Drawing.Size(75, 23);
             this.btnClearNow.TabIndex = 2;
@@ -66,36 +67,30 @@
             this.btnClearNow.UseVisualStyleBackColor = true;
             this.btnClearNow.Click += new System.EventHandler(this.btnClearNow_Click);
             // 
-            // btnExit
-            // 
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.Location = new System.Drawing.Point(12, 140);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 23);
-            this.btnExit.TabIndex = 3;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = true;
-            // 
             // btnAccept
             // 
             this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAccept.Location = new System.Drawing.Point(279, 140);
+            this.btnAccept.Location = new System.Drawing.Point(248, 138);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(58, 23);
             this.btnAccept.TabIndex = 4;
             this.btnAccept.Text = "Accept";
             this.btnAccept.UseVisualStyleBackColor = true;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
+            // 
+            // nfiMain
+            // 
+            this.nfiMain.Icon = ((System.Drawing.Icon)(resources.GetObject("nfiMain.Icon")));
+            this.nfiMain.Text = "Clear Machine";
+            this.nfiMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.nfiMain_MouseClick);
             // 
             // MainForm
             // 
             this.AcceptButton = this.btnAccept;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(349, 175);
+            this.ClientSize = new System.Drawing.Size(318, 173);
             this.Controls.Add(this.btnAccept);
-            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnClearNow);
             this.Controls.Add(this.lbPath);
             this.Controls.Add(this.btnChoosePath);
@@ -105,6 +100,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Clear Machine";
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,8 +111,8 @@
         private System.Windows.Forms.Button btnChoosePath;
         private System.Windows.Forms.Label lbPath;
         private System.Windows.Forms.Button btnClearNow;
-        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnAccept;
+        private System.Windows.Forms.NotifyIcon nfiMain;
     }
 }
 

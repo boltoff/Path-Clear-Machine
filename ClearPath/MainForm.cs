@@ -57,5 +57,30 @@ namespace ClearPath
                 MessageBox.Show("It's clear!.", "Yeah!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        //Minimize Window to tray
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.Hide();
+                nfiMain.Visible = true;
+            }
+        }
+
+        //Maximize Window
+        private void nfiMain_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            nfiMain.Visible = false;
+        }
+
+        //Minimize the programm to tray on button Accept
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            nfiMain.Visible = true;
+        }
     }
 }
