@@ -94,7 +94,6 @@
             this.cbOnWinStart.TabIndex = 5;
             this.cbOnWinStart.Text = "Run on windows startup";
             this.cbOnWinStart.UseVisualStyleBackColor = true;
-            this.cbOnWinStart.CheckedChanged += new System.EventHandler(this.cbOnWinStart_CheckedChanged);
             // 
             // MainForm
             // 

@@ -83,6 +83,19 @@ namespace ClearPath
         //Minimize window to tray on button Accept
         private void btnAccept_Click(object sender, EventArgs e)
         {
+            if (cbOnWinStart.Checked == true)
+            {
+                //Set autoloading
+                SetAutorunValue(true);
+                Properties.Settings.Default.OnWinStart = true;
+            }
+            else
+            {
+                //Unset autoloading
+                SetAutorunValue(false);
+                Properties.Settings.Default.OnWinStart = false;
+            }
+
             this.Hide();
             nfiMain.Visible = true;
         }
@@ -107,21 +120,6 @@ namespace ClearPath
                 return false;
             }
             return true;
-        }
-
-        //Set or Unset autoloading
-        private void cbOnWinStart_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbOnWinStart.Checked == true)
-            {
-                SetAutorunValue(true);
-                Properties.Settings.Default.OnWinStart = true;
-            }
-            else
-            {
-                SetAutorunValue(false);
-                Properties.Settings.Default.OnWinStart = false;
-            }
         }
     }
 }
